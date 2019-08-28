@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }} | Cyberarm</title>
+    <link href="https://fonts.googleapis.com/css?family=Cagliostro|Electrolize" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+
+  <body>
+    {% include heading.html %}
+
+    <h2 class="page_title">{{ page.title }}</h2>
+    <div class="content">
+      {{ content }}
+    </div>
+
+  </body>
+  {% include footer.html %}
+</html>
