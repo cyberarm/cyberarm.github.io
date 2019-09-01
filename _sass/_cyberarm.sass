@@ -2,113 +2,113 @@ $background: #222
 $foreground: #FFE
 
 html
-	padding: 0
-	margin: 0
+  padding: 0
+  margin: 0
 
 body
-	font-family: 'Cagliostro', sans-serif
-	background: $background
-	color: #111
-	text-shadow: 0 0 1.2px black
-	margin: auto 0
+  font-family: 'Cagliostro', sans-serif
+  background: $background
+  color: #111
+  text-shadow: 0 0 1.2px black
+  margin: auto 0
 
 p, h1,h2,h3,h4,h5,h6
-	margin: 0px
-	padding: 0.3em
+  margin: 0px
+  padding: 0.3em
 
-h1, h2
-	font-family: 'Electrolize', sans-serif
-	text-shadow: 0 0 1.7px black
-	color: #222
-
-h3
-	font-size: 2em
+h1, h2, h3
+  font-family: 'Electrolize', sans-serif
+  text-shadow: 0 0 1.7px black
+  color: #222
 
 p
-	font-size: 1.4em
+  font-size: 18pt
 
 pre
-	font-family: 'Consolas', sans-serif
+  font-family: 'Consolas', sans-serif
 
 a
-	font-family: 'Electrolize', sans-serif
-	color: blue
-	text-decoration: none
+  font-family: 'Electrolize', sans-serif
+  color: blue
+  text-decoration: underline
+  &:hover
+    color: purple
 
-a:hover
-	color: purple
-	text-decoration: underline
+li
+  font-size: 18pt
 
 .navigation
-	display: flex
-	flex-flow: row wrap
-	justify-content: center
-	list-style: none
+  display: flex
+  flex-flow: row wrap
+  justify-content: center
+  list-style: none
 
 .navigation a
-	padding: .5em 1em .5em 1em
-	margin-left: 8pt
-	margin-right: 8pt
-	display: block
-	text-decoration: none
-	font-size: 1.3em
-	border-radius: 2pt
-	color: darkorange
-	background: $background
-	&:hover
-		color: orange
-		background: lighten($background, 5%)
-		text-decoration: none
-		box-shadow: inset 0 0 1pt white
-	&:active
-		box-shadow: inset 0 0 2pt black
-		color: $background
-		background: darkorange
-		text-decoration: none
+  padding: .5em 1em .5em 1em
+  margin-left: 8pt
+  margin-right: 8pt
+  display: block
+  text-decoration: none
+  font-size: 1.3em
+  border-radius: 2pt
+  color: darkorange
+  background: $background
+  font-size: 18pt
+  &:hover
+    color: orange
+    background: lighten($background, 5%)
+    text-decoration: none
+    box-shadow: inset 0 0 1pt white
+  &:active
+    box-shadow: inset 0 0 2pt black
+    color: $background
+    background: darkorange
+    text-decoration: none
 
 footer
-	margin-top: 3em
-	padding: 3em
-	padding-bottom: 1em
-	ul
-		display: flex
-		flex-flow: row wrap
-		justify-content: center
-	li
-		list-style: none
-	a
-		display: block
-		color: gray
-		padding-left: 1em
-		padding-right: 1em
+  margin-top: 3em
+  padding: 3em
+  padding-bottom: 1em
+  ul
+    display: flex
+    flex-flow: row wrap
+    justify-content: center
+  li
+    list-style: none
+    font-size: 12pt
+  a
+    display: block
+    color: gray
+    padding-left: 1em
+    padding-right: 1em
 
 img
-	max-width: 100%
+  max-width: 100%
 
 
 
 .heading
-	padding: 1em
-	padding-bottom: 1pt
-	margin: 0 auto
-	text-align: center
-	background: $foreground
-	background: linear-gradient($foreground, $foreground)
-	box-shadow: 0 0 0.2em black
+  padding: 1em
+  padding-bottom: 1pt
+  margin: 0 auto
+  text-align: center
+  background: $foreground
+  background: linear-gradient($foreground, $foreground)
+  box-shadow: 0 0 0.2em black
 
 .content
-	padding: 1em
-	margin-left: 10em
-	margin-right: 10em
-	background: $foreground
-	box-shadow: 0 0 0.2em black
+  padding: 1em
+  margin-left: 10em
+  margin-right: 10em
+  background: $foreground
+  box-shadow: 0 0 0.2em black
 
 .page_title
-	color: white
-	text-align: center
-	margin-bottom: 0pt
-	font-size: 36pt
+  color: white
+  text-align: center
+  margin-bottom: 0pt
+  font-size: 36pt
 
 .gravatar
-	box-shadow: 0 0 0.5em black
-	border-radius: 50%
+  box-shadow: 0 0 0.5em black
+  border-radius: 50%
