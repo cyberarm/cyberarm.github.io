@@ -8,7 +8,7 @@ html5
         img.gravatar src="https://secure.gravatar.com/avatar/daa730763505dfaf9db348e5e78fbe1f?size=100"
       h1 Hi. I'm Cyberarm.
       p
-        span I make games and other things with <a href="https://ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>.
+        span I make games and other things with <a href="https://www.ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>.
       ul.navigation
         li
           a href="/" Home
@@ -21,6 +21,12 @@ html5
 
     h2.page_title=@item[:title]
     div.content
+      - if @item[:kind] == "article"
+        h4 = @item[:created_at].strftime("%B %e %Y")
+        br
+      - elsif @item[:kind] == "project" && @item[:source]
+        h4
+          a href="#{@item[:source]}" Source
       == yield
     footer
       ul

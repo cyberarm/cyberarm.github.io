@@ -1,14 +1,27 @@
 #!/usr/bin/env ruby
 
+compile '/blog/feed.slim' do
+  filter :slim
+  write '/blog/feed.xml'
+end
+
+compile '/sitemap.slim' do
+  filter :slim
+  write '/sitemap.xml'
+end
+
 compile '/**/*.slim' do
   filter :slim
   layout '/default.*'
 
-  if item.identifier =~ '/index.*'
-    '/index.html'
-  else
-    item.identifier.without_ext + '/index.html'
-  end
+  item.identifier.without_ext + '/index.html'
+end
+
+compile '/**/*.{md,markdown}' do
+  filter :redcarpet
+  layout '/default.*'
+
+  write item.identifier.without_ext + '/index.html'
 end
 
 compile '/**/*.sass' do

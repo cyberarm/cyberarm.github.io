@@ -5,4 +5,4 @@ created_at:   2019-08-28 09:34:03 -0500
 author: Cyberarm
 categories: update
 ---
-p Completely redid the site, using <a href="https://jekyllrb.com">Jekyll</a> this time instead of raw html/css.
+Completely redid the site, using [Jekyll](https://jekyllrb.com) this time instead of raw html/css.
