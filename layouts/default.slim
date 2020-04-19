@@ -1,0 +1,32 @@
+html5
+  head
+    title #{ @item[:title] } | Cyberarm
+    link rel="stylesheet" href="/css/style.css" type="text/css"
+  body
+    .heading
+      a href="/"
+        img.gravatar src="https://secure.gravatar.com/avatar/daa730763505dfaf9db348e5e78fbe1f?size=100"
+      h1 Hi. I'm Cyberarm.
+      p
+        span I make games and other things with <a href="https://ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>.
+      ul.navigation
+        li
+          a href="/" Home
+        li
+          a href="/projects" Projects
+        li
+          a href="/games" Games
+        li
+          a href="/blog" Blog
+
+    h2.page_title=@item[:title]
+    div.content
+      == yield
+    footer
+      ul
+        li
+          a href="https://github.com/cyberarm"  Github
+        li
+          a href="https://youtube.com/channel/UCzV_fK8HubXJhKayzPRMLow"  YouTube
+        li
+          a href="https://twitter.com/_cyberarm"  Twitter
