@@ -5,23 +5,20 @@ created_at:   2014-11-18 08:00:00 -0600
 author: Cyberarm
 categories: update
 ---
+    > irb
 
-```
-  > irb
+    require "blogging"
 
-  require "blogging"
+    class Blog
+      include Blogging
 
-  class Blog
-  include Blogging
-
-  def initialize
-  words = Writer.new
-  puts "word count: #{words.count}"
-  end
-  end
+      def initialize
+        words = Writer.new
+        puts "word count: #{words.count}"
+        end
+      end
 
 
-  > Blog.new
+    Blog.new
 
-  NoMethodError: undefined method `count' for #<Writer:0x2b8a0f8>
-```
+    > NoMethodError: undefined method 'count' for #<Writer:0x2b8a0f8>
