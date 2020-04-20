@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://cyberarm.dev/">
+  <id>https://cyberarm.dev/</id>
+  <title>Cyberarm's Musings</title>
+  <updated>2020-04-18T21:01:06Z</updated>
+  <link rel="alternate" href="https://cyberarm.dev/" type="text/html"/>
+  <link rel="self" href="https://cyberarm.dev/blog/feed.xml" type="application/atom+xml"/>
+  <author>
+    <name>Cyberarm</name>
+    <uri>https://github.com/cyberarm</uri>
+  </author>
+  <entry>
+    <id>tag:cyberarm.dev,2020-04-18:/blog/2020-04-18-bye-jekyll-hello-nanoc/</id>
+    <title type="html">Bye Jekyll, hello Nanoc!</title>
+    <published>2020-04-18T21:01:06Z</published>
+    <updated>2020-04-18T21:01:06Z</updated>
+    <link rel="alternate" href="https://cyberarm.dev/blog/2020-04-18-bye-jekyll-hello-nanoc/" type="text/html"/>
+    <content type="html">&lt;p&gt;Completely redid the site, using &lt;a href="https://nanoc.ws"&gt;Nanoc&lt;/a&gt; this time instead of Jekyll
+as Nanoc natively supports &lt;a href="https://github.com/slim-template/slim"&gt;slim&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:cyberarm.dev,2019-08-28:/blog/2019-08-28-welcome-to-jekyll/</id>
+    <title type="html">Welcome to Jekyll!</title>
+    <published>2019-08-28T14:34:03Z</published>
+    <updated>2019-08-28T14:34:03Z</updated>
+    <link rel="alternate" href="https://cyberarm.dev/blog/2019-08-28-welcome-to-jekyll/" type="text/html"/>
+    <content type="html">&lt;p&gt;Completely redid the site, using &lt;a href="https://jekyllrb.com"&gt;Jekyll&lt;/a&gt; this time instead of raw html/css.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:cyberarm.dev,2014-11-20:/blog/2014-11-20-jared-revisited/</id>
+    <title type="html">Jared Revisited</title>
+    <published>2014-11-20T14:00:00Z</published>
+    <updated>2014-11-20T14:00:00Z</updated>
+    <link rel="alternate" href="https://cyberarm.dev/blog/2014-11-20-jared-revisited/" type="text/html"/>
+    <content type="html">&lt;p&gt;I have decided to rewrite &lt;a href="https://github.com/cyberarm/jared"&gt;Jared&lt;/a&gt; (again.)&lt;/p&gt;
+
+&lt;p&gt;Jared has been sitting untouched for over a year and he could really use a face life :)&lt;/p&gt;
+
+&lt;p&gt;I am going to move his internal plugins in to separate gems, then create a plugin list over at jared-plugins.&lt;/p&gt;
+
+&lt;p&gt;And after that completely rewrite Jared to expect gems for plugins, and to use the &lt;a href="https://github.com/cyberarm/jared-plugins"&gt;jared-plugins&lt;/a&gt; repository to find plugins.&lt;/p&gt;
+
+&lt;p&gt;I hope to have Jared at a true 1.0 by around Christmas.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:cyberarm.dev,2014-11-18:/blog/2014-11-18-first-post/</id>
+    <title type="html">First Post</title>
+    <published>2014-11-18T14:00:00Z</published>
+    <updated>2014-11-18T14:00:00Z</updated>
+    <link rel="alternate" href="https://cyberarm.dev/blog/2014-11-18-first-post/" type="text/html"/>
+    <content type="html">&lt;pre&gt;&lt;code&gt;&amp;gt; irb
+
+require &amp;quot;blogging&amp;quot;
+
+class Blog
+  include Blogging
+
+  def initialize
+    words = Writer.new
+    puts &amp;quot;word count: #{words.count}&amp;quot;
+    end
+  end
+
+
+Blog.new
+
+&amp;gt; NoMethodError: undefined method &amp;#39;count&amp;#39; for #&amp;lt;Writer:0x2b8a0f8&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+</feed>
