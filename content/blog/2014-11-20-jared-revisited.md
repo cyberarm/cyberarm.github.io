@@ -4,6 +4,7 @@ title:  "Jared Revisited"
 created_at:   2014-11-20 08:00:00 -0600
 author: Cyberarm
 categories: update
+tagline: Rewriting Jared from scatch
 ---
 
 I have decided to rewrite [Jared](https://github.com/cyberarm/jared) (again.)

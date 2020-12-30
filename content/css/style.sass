@@ -1,14 +1,15 @@
 $background: #222
-$foreground: #FFE
+$foreground: #dddddd
+$mobile_width: 768px
 
 html
   padding: 0
   margin: 0
 
 body
-  font-family: sans-serif
+  font-family: "Cantarell", sans-serif
   background: $background
-  color: #111
+  color: #222020
   margin: auto 0
 
 p, h1,h2,h3,h4,h5,h6
@@ -23,38 +24,47 @@ p
   font-size: 16pt
 
 pre
-  font-family: 'Consolas', monospace
+  font-family: "Consolas", monospace
 
 a
   color: blue
-  text-decoration: underline
+  text-decoration: none
+  border-bottom: solid 1px #00000000
+  transition: border-color 0.25s ease-in-out
   &:hover
+    border-bottom: solid 1px
     color: purple
+  &:active
+    color: red
 
 li
   font-size: 16pt
 
 .navigation
+  margin: 0
+  padding: 0
   display: flex
   flex-flow: row wrap
   justify-content: center
   list-style: none
+  .left
+    border-radius: 2pt 0pt 0pt 2pt
+  .right
+    border-radius: 0pt 2pt 2pt 0pt
 
 .navigation a
-  padding: .5em 1em .5em 1em
-  margin-left: 8pt
-  margin-right: 8pt
+  margin-top: 8pt
+  padding: 4pt 8pt 4pt 8pt
   display: block
   text-decoration: none
-  font-size: 1.3em
-  border-radius: 2pt
   color: darkorange
   background: $background
   font-size: 18pt
+  @media screen and (max-width: $mobile_width)
+    font-size: 16pt
   &:hover
-    color: orange
+    color: gold
     background: lighten($background, 5%)
-    text-decoration: none
     box-shadow: inset 0 0 1pt white
   &:active
     box-shadow: inset 0 0 2pt black
@@ -63,9 +73,12 @@ li
     text-decoration: none
 
 footer
+  margin: 0 auto
   padding: 2em
   padding-bottom: 1em
   ul
+    margin: 0
+    padding: 0
     display: flex
     flex-flow: row wrap
     justify-content: center
@@ -77,34 +90,48 @@ footer
     color: gray
     padding-left: 1em
     padding-right: 1em
+    &:hover
+      border-bottom: none 0px #00000000
 
 img
   max-width: 100%
 
-
+.page
+  width: 100%
+  max-width: 600pt
+  margin: 0 auto
+  background: $foreground
+  box-shadow: 0 0 0.2em black
+  overflow: auto
+  border-radius: 5pt
+  margin-top: 2em
+  @media screen and (max-width: $mobile_width)
+    border-radius: 0pt
+    margin-top: 0pt
 
 .heading
   padding: 1em
-  padding-bottom: 1pt
-  margin: 0 auto
   text-align: center
-  background: $foreground
-  background: linear-gradient($foreground, $foreground)
-  box-shadow: 0 0 0.2em black
+  border-bottom: 2pt solid black
 
 .content
   padding: 1em
   background: $foreground
-  box-shadow: 0 0 0.2em black
   max-width: 600pt
   margin: 0 auto
 
 .page_title
-  color: white
+  color: black
   text-align: center
   margin-bottom: 0pt
   font-size: 36pt
 
 .gravatar
-  box-shadow: 0 0 0.5em black
-  border-radius: 50%
+  img
+    border-radius: 50%
+    box-shadow: 0 0 0.5em black
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1)//ease-in-out
+    &:hover
+      transform: rotateZ(180deg)
+  &:hover
+    border-bottom: solid 0px rgba(0, 0, 0, 0)

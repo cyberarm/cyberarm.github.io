@@ -1,7 +1,8 @@
 ---
 title: CitySim
-kind: project
+kind: game
 source: https://github.com/cyberarm/citysim
+tagline: Creating a simple city simulation
 ---
 Creating a simple city simulation
 

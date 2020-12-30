@@ -6,8 +6,11 @@ gem "sassc"
 gem "slim"
 gem "adsf"
 gem "adsf-live"
-gem "redcarpet"
+# gem "redcarpet"
+gem "kramdown"
 gem "builder"
+gem "rouge"
+gem "nokogiri"
 
 group :nanoc do
   gem 'guard-nanoc'

@@ -2,6 +2,7 @@
 title: CyberarmEngine
 kind: project
 source: https://github.com/cyberarm/cyberarm_engine
+tagline: Yet another framework for building games with Gosu
 ---
 ## Yet Another Game Engine On Top Of Gosu
 **Features**

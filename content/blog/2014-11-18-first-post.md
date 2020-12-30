@@ -4,6 +4,7 @@ title:  "First Post"
 created_at:   2014-11-18 08:00:00 -0600
 author: Cyberarm
 categories: update
+tagline: Hello World
 ---
     > irb
 
@@ -15,8 +16,8 @@ categories: update
       def initialize
         words = Writer.new
         puts "word count: #{words.count}"
-        end
       end
+    end
 
 
     Blog.new

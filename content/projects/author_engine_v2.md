@@ -2,6 +2,7 @@
 title: AuthorEngineV2
 kind: project
 source: https://github.com/cyberarm/author_engineV2
+tagline: A virtual console that you code in Ruby.
 ---
 ## An IDE for creating games
 Using [Ruby](https://www.ruby-lang.org) and exporting them to the web with [Opal](https://opalrb.com)

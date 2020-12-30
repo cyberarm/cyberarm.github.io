@@ -2,10 +2,15 @@
 title: Home
 ---
 
-h2
-  span Dungeon Crawler
-  a href="https://github.com/cyberarm/dungeon_crawler"
-    img src="https://raw.githubusercontent.com/cyberarm/dungeon_crawler/master/screenshots/map_player.png"
+h1 Greetings and Salutations
+p Welcome to my little corner of the internet. Here I showcase my projects in various stages of completion.
+br
 
-h3 Summary
-p Randomly generated levels with a DOOM style renderer
+h1 Latest Post
+- article = sorted_articles.first
+- if article
+  h2
+    a href="#{article.path}"=article[:title]
+  p
+    i #{article.attributes[:tagline]}
+  p #{article.attributes[:created_at].strftime("%e %B %Y")}

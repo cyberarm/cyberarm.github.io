@@ -1,7 +1,8 @@
 ---
 title: Dungeon Crawler
-kind: project
+kind: game
 source: https://github.com/cyberarm/dungeon_crawler
+tagline: Randomly generated levels with a DOOM style renderer
 ---
 Randomly generated levels with a DOOM style renderer
 
