@@ -2,13 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://cyberarm.dev/">
   <id>https://cyberarm.dev/</id>
   <title>Cyberarm's Musings</title>
-  <updated>2020-04-18T21:01:06Z</updated>
+  <updated>2020-12-30T21:32:00Z</updated>
   <link rel="alternate" href="https://cyberarm.dev/" type="text/html"/>
   <link rel="self" href="https://cyberarm.dev/blog/feed.xml" type="application/atom+xml"/>
   <author>
     <name>Cyberarm</name>
     <uri>https://github.com/cyberarm</uri>
   </author>
+  <entry>
+    <id>tag:cyberarm.dev,2020-12-30:/blog/2020-12-30-refreshed-site-design/</id>
+    <title type="html">Refreshed site design</title>
+    <published>2020-12-30T21:32:00Z</published>
+    <updated>2020-12-30T21:32:00Z</updated>
+    <link rel="alternate" href="https://cyberarm.dev/blog/2020-12-30-refreshed-site-design/" type="text/html"/>
+    <content type="html">&lt;p&gt;Refreshed the sites design to be more mobile friendly and to improve its readiblity.&lt;/p&gt;
+
+&lt;p&gt;Toned down the page content background color and slimmed down and merged the navigation buttons together.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/media/images/2020-12-30-site-refresh.webp" alt="" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:cyberarm.dev,2020-04-18:/blog/2020-04-18-bye-jekyll-hello-nanoc/</id>
     <title type="html">Bye Jekyll, hello Nanoc!</title>
@@ -53,21 +66,21 @@ as Nanoc natively supports &lt;a href="https://github.com/slim-template/slim"&gt
     <link rel="alternate" href="https://cyberarm.dev/blog/2014-11-18-first-post/" type="text/html"/>
     <content type="html">&lt;pre&gt;&lt;code&gt;&amp;gt; irb
 
-require &amp;quot;blogging&amp;quot;
+require "blogging"
 
 class Blog
   include Blogging
 
   def initialize
     words = Writer.new
-    puts &amp;quot;word count: #{words.count}&amp;quot;
-    end
+    puts "word count: #{words.count}"
   end
+end
 
 
 Blog.new
 
-&amp;gt; NoMethodError: undefined method &amp;#39;count&amp;#39; for #&amp;lt;Writer:0x2b8a0f8&amp;gt;
+&amp;gt; NoMethodError: undefined method 'count' for #&amp;lt;Writer:0x2b8a0f8&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>

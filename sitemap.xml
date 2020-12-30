@@ -2,62 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cyberarm.dev/blog/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/blog/2014-11-18-first-post/</loc>
-    <lastmod>2020-04-20</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/blog/2014-11-20-jared-revisited/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/blog/2019-08-28-welcome-to-jekyll/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/blog/2020-04-18-bye-jekyll-hello-nanoc/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://cyberarm.dev/blog/2020-12-30-refreshed-site-design/</loc>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/games/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/games/citysim/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/games/dungeon_crawler/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/games/i-mic-fps/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/games/i-mic-rts/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://cyberarm.dev/games/planet-wars/</loc>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/projects/</loc>
-    <lastmod>2020-04-18</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/projects/author_engine_v2/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/projects/cyberarm_engine/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/projects/untitled_short_film/</loc>
-    <lastmod>2020-04-19</lastmod>
+    <lastmod>2020-12-30</lastmod>
   </url>
 </urlset>
