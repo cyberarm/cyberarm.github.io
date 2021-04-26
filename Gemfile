@@ -11,6 +11,7 @@ gem "kramdown"
 gem "builder"
 gem "rouge"
 gem "nokogiri"
+gem "puma"
 
 group :nanoc do
   gem 'guard-nanoc'
