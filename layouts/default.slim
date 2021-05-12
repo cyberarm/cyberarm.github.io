@@ -3,13 +3,16 @@ html
   head
     title #{ @item[:title] } | Cyberarm
     link rel="stylesheet" href="/css/style.css" type="text/css"
+
+    link rel="alternate" type="application/atom+xml" title="Cyberarm's Musings" href="/blog/feed.xml"
+
     meta content="width=device-width, initial-scale=1" name="viewport"
     meta charset="utf-8"
   body
     .page
       .heading
         a.gravatar href="/"
-          img src="https://secure.gravatar.com/avatar/daa730763505dfaf9db348e5e78fbe1f?size=100"
+          img src="/media/avatar.svg"
         h1 Hi. I'm Cyberarm.
         p
           span I make games and other things with <a href="https://www.ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>. 🕹️

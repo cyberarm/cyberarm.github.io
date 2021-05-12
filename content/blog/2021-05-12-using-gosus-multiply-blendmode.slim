@@ -1,0 +1,175 @@
+---
+kind: article
+title: "Using Gosu's multiply blendmode"
+created_at: 2021-05-12 12:35:00 -0000
+author: Cyberarm
+categories: tutorial gosu
+tagline: Masks.
+highlight_line_numbers: true
+---
+p
+  b This tutorial assumes you already have <a href="https://github.com/gosu/gosu/wiki">Ruby and Gosu installed</a>.
+
+img src="/media/images/gosu_tutorials/screenshots/Screenshot-from-2021-05-12-13-53-59.png"
+
+p Here are the two images that are required
+p The background image
+img src="/media/images/gosu_tutorials/background.png"
+
+p The scope mask image
+img src="/media/images/gosu_tutorials/scope_mask.png"
+
+p This tutorial assumes the following directory structure
+pre
+  code
+    | assets/
+        background.png
+        scope_mask.png
+      tutorial.rb
+
+p Create a Window
+pre.highlight
+  code class="language-ruby"
+    | require "gosu"
+
+      class Window < Gosu::Window
+      end
+
+p Implement Window#initialize
+pre.highlight
+  code class="language-ruby"
+    | require "gosu"
+
+      class Window < Gosu::Window
+        def initialize(*args)
+          super(*args)
+        end
+      end
+
+p Load images and add instance variables
+pre.highlight
+  code class="language-ruby"
+    | require "gosu"
+
+      class Window < Gosu::Window
+        def initialize(*args)
+          super(*args)
+
+          @background = Gosu::Image.new("assets/background.png")
+          @scope_mask = Gosu::Image.new("assets/scope_mask.png")
+
+          @show_scope = true
+          @scope_scale = 1.0
+
+          # Make background image fit to the window's height
+          @background_scale = self.height / @background.height.to_f
+        end
+      end
+
+p Hide cursor and draw background
+pre.highlight
+  code class="language-ruby"
+    | require "gosu"
+
+      class Window < Gosu::Window
+        def initialize(*args)
+          super(*args)
+
+          @background = Gosu::Image.new("assets/background.png")
+          @scope_mask = Gosu::Image.new("assets/scope_mask.png")
+
+          @show_scope = true
+          @scope_scale = 1.0
+
+          # Make background image fit to the window's height
+          @background_scale = self.height / @background.height.to_f
+        end
+
+        def needs_cursor?
+          false
+        end
+
+        def draw
+          @background.draw(0, 0, 0, @background_scale, @background_scale)
+        end
+      end
+
+p And finally create the mask image by using Gosu.render to draw a fullscreen black background then draw our scope mask on top of it then finally draw the rendered image using the :multiply blendmode.
+pre.highlight
+  code class="language-ruby"
+    | require "gosu"
+
+      class Window < Gosu::Window
+        def initialize(*args)
+          super(*args)
+
+          @background = Gosu::Image.new("assets/background.png")
+          @scope_mask = Gosu::Image.new("assets/scope_mask.png")
+
+          @show_scope = true
+          @scope_scale = 1.0
+
+          # Make background image fit to the window's height
+          @background_scale = self.height / @background.height.to_f
+        end
+
+        def needs_cursor?
+          false
+        end
+
+        def draw
+          @background.draw(0, 0, 0, @background_scale, @background_scale)
+
+          draw_mask if @show_scope_mask
+        end
+
+        def draw_mask
+          Gosu.render(self.width, self.height) do
+            Gosu.draw_rect(0, 0, self.width, self.height, Gosu::Color::BLACK)
+            @scope_mask.draw_rot(self.mouse_x, self.mouse_y, 0, 0, 0.5, 0.5, @scope_scale, @scope_scale)
+          end.draw(0, 0, 0, 1.0, 1.0, Gosu::Color::WHITE, :multiply)
+        end
+      end
+
+p Lastly use the right mouse button to toggle the scope on and off. Finally create a new instance of the Window class and show it.
+pre.highlight
+  code class="language-ruby"
+    | require "gosu"
+
+      class Window < Gosu::Window
+        def initialize(*args)
+          super(*args)
+
+          @background = Gosu::Image.new("assets/background.png")
+          @scope_mask = Gosu::Image.new("assets/scope_mask.png")
+
+          @show_scope = true
+          @scope_scale = 1.0
+
+          # Make background image fit to the window's height
+          @background_scale = self.height / @background.height.to_f
+        end
+
+        def needs_cursor?
+          false
+        end
+
+        def draw
+          @background.draw(0, 0, 0, @background_scale, @background_scale)
+
+          draw_mask if @show_scope_mask
+        end
+
+        def draw_mask
+          Gosu.render(self.width, self.height) do
+            Gosu.draw_rect(0, 0, self.width, self.height, Gosu::Color::BLACK)
+            @scope_mask.draw_rot(self.mouse_x, self.mouse_y, 0, 0, 0.5, 0.5, @scope_scale, @scope_scale)
+          end.draw(0, 0, 0, 1.0, 1.0, Gosu::Color::WHITE, :multiply)
+        end
+
+        def button_down(id)
+          @show_scope_mask = !@show_scope_mask if id == Gosu::MS_RIGHT
+        end
+      end
+
+      Window.new(1280, 720, false).show
