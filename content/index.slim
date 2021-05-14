@@ -11,6 +11,6 @@ h1 Latest Post
 - if article
   h2
     a href="#{article.path}"=article[:title]
+  p #{article.attributes[:created_at].strftime("%e %B %Y")}
   p
     i #{article.attributes[:tagline]}
-  p #{article.attributes[:created_at].strftime("%e %B %Y")}

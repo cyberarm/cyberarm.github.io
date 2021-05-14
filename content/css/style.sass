@@ -2,44 +2,48 @@ $background: #222
 $foreground: #dddddd
 $mobile_width: 768px
 
-html
+html, body
   padding: 0
-  margin: 0
 
 body
-  font-family: "Cantarell", sans-serif
+  font-family: sans-serif
   background: $background
   color: #222020
   margin: auto 0
+  overflow: auto
 
-p, h1,h2,h3,h4,h5,h6
+p, h1, h2, h3, h4, h5, h6
   margin: 0px
   padding: 0.3em
 
 h1, h2, h3
-  font-family: Courier New, Courier, monospace
   color: #222
 
 p
-  font-size: 16pt
+  font-size: 14pt
 
 code, pre
   font-size: 12pt
-  font-family: "Consolas", monospace
+  font-family: monospace
 
 a
-  color: blue
+  color: #3311ff
   text-decoration: none
   border-bottom: solid 1px #00000000
   transition: border-color 0.25s ease-in-out
   &:hover
     border-bottom: solid 1px
-    color: purple
+    color: #000099
   &:active
-    color: red
+    color: #4422ff
 
 li
   font-size: 16pt
+
+hr
+  background: #331100
+  border: solid #331100 2pt
+  border-radius: 5pt
 
 .navigation
   margin: 0
@@ -91,11 +95,18 @@ footer
     color: gray
     padding-left: 1em
     padding-right: 1em
+    border-bottom: none 0px #00000000
+    transition: color 0.25s ease-in-out
     &:hover
+      color: lightgray
+      border-bottom: none 0px #00000000
+    &:active
+      color: white
       border-bottom: none 0px #00000000
 
 img
   max-width: 100%
+  border-radius: 5pt
 
 .page
   width: 100%
@@ -125,14 +136,15 @@ img
   color: black
   text-align: center
   margin-bottom: 0pt
-  font-size: 36pt
+  font-size: 24pt
+  word-wrap: break-word
 
 .gravatar
   img
     width: 100px
     border-radius: 50%
     box-shadow: 0 0 0.5em black
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1)//ease-in-out
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1)
     &:hover
       transform: rotateZ(180deg)
   &:hover
