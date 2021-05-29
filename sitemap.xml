@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cyberarm.dev/blog/</loc>
-    <lastmod>2020-12-30</lastmod>
+    <lastmod>2021-05-29</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/blog/2014-11-18-first-post/</loc>
@@ -23,6 +23,10 @@
   <url>
     <loc>https://cyberarm.dev/blog/2020-12-30-refreshed-site-design/</loc>
     <lastmod>2020-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://cyberarm.dev/blog/2021-05-12-gosu-tutorial-using-the-multiply-blend-mode/</loc>
+    <lastmod>2021-05-29</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/games/</loc>
@@ -50,7 +54,7 @@
   </url>
   <url>
     <loc>https://cyberarm.dev/</loc>
-    <lastmod>2020-12-30</lastmod>
+    <lastmod>2021-05-29</lastmod>
   </url>
   <url>
     <loc>https://cyberarm.dev/projects/</loc>

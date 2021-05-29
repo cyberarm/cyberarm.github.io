@@ -1,0 +1,268 @@
+<!DOCTYPE html><html><head><title>Gosu Tutorial: Using the :multiply blend mode | Cyberarm</title><link href="/css/style.css" rel="stylesheet" type="text/css" /><link href="/blog/feed.xml" rel="alternate" title="Cyberarm&#39;s Musings" type="application/atom+xml" /><meta content="width=device-width, initial-scale=1" name="viewport" /><meta charset="utf-8" /></head><body><div class="page"><div class="heading"><a class="gravatar" href="/"><img src="/media/avatar.svg" /></a><h1>Hi. I'm Cyberarm.</h1><p><span>I make games and other things with <a href="https://www.ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>. 🕹️</span></p><ul class="navigation"><li><a class="left" href="/">Home</a></li><li><a href="/projects">Projects</a></li><li><a href="/games">Games</a></li><li><a class="right" href="/blog">Blog</a></li></ul></div><div class="content"><h2 class="page_title">Gosu Tutorial: Using the :multiply blend mode</h2><h4>May 12 2021</h4><br /><img src="/media/images/gosu_tutorials/screenshots/Screenshot-from-2021-05-12-13-53-59.png"><hr><p><b>This tutorial assumes you already have <a href="https://github.com/gosu/gosu/wiki">Ruby and Gosu installed</a>.</b></p><hr><p>Here are the two images that are required</p><p>The background image</p><img src="/media/images/gosu_tutorials/background.png"><p>The scope mask image</p><img src="/media/images/gosu_tutorials/scope_mask.png"><p>This tutorial assumes the following directory structure</p><pre><code>assets/
+  background.png
+  scope_mask.png
+tutorial.rb</code></pre><p>Create a Window</p><pre class="highlight"><code class="language-ruby"><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td>
+<td class="rouge-code"><pre><span style="color: #fbf1c7;background-color: #282828">require</span> <span style="color: #b8bb26;font-style: italic">"gosu"</span>
+
+<span style="color: #fb4934">class</span> <span style="color: #8ec07c">Window</span> <span style="color: #fbf1c7">&lt;</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Window</span>
+<span style="color: #fb4934">end</span>
+</pre></td>
+</tr></tbody></table></code></pre><p>Implement Window#initialize</p><pre class="highlight"><code class="language-ruby"><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td>
+<td class="rouge-code"><pre><span style="color: #fbf1c7;background-color: #282828">require</span> <span style="color: #b8bb26;font-style: italic">"gosu"</span>
+
+<span style="color: #fb4934">class</span> <span style="color: #8ec07c">Window</span> <span style="color: #fbf1c7">&lt;</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Window</span>
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">initialize</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">super</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+  <span style="color: #fb4934">end</span>
+<span style="color: #fb4934">end</span>
+</pre></td>
+</tr></tbody></table></code></pre><p>Load images and add instance variables</p><pre class="highlight"><code class="language-ruby"><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td>
+<td class="rouge-code"><pre><span style="color: #fbf1c7;background-color: #282828">require</span> <span style="color: #b8bb26;font-style: italic">"gosu"</span>
+
+<span style="color: #fb4934">class</span> <span style="color: #8ec07c">Window</span> <span style="color: #fbf1c7">&lt;</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Window</span>
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">initialize</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">super</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@background</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/background.png"</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_mask</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/scope_mask.png"</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@show_scope</span> <span style="color: #fbf1c7">=</span> <span style="color: #fb4934">true</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">1.0</span>
+
+    <span style="color: #928374;font-style: italic"># Make background image fit to the window's height</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span> <span style="color: #fbf1c7">/</span> <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">to_f</span>
+  <span style="color: #fb4934">end</span>
+<span style="color: #fb4934">end</span>
+</pre></td>
+</tr></tbody></table></code></pre><p>Hide cursor and draw background</p><pre class="highlight"><code class="language-ruby"><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td>
+<td class="rouge-code"><pre><span style="color: #fbf1c7;background-color: #282828">require</span> <span style="color: #b8bb26;font-style: italic">"gosu"</span>
+
+<span style="color: #fb4934">class</span> <span style="color: #8ec07c">Window</span> <span style="color: #fbf1c7">&lt;</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Window</span>
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">initialize</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">super</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@background</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/background.png"</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_mask</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/scope_mask.png"</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@show_scope</span> <span style="color: #fbf1c7">=</span> <span style="color: #fb4934">true</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">1.0</span>
+
+    <span style="color: #928374;font-style: italic"># Make background image fit to the window's height</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span> <span style="color: #fbf1c7">/</span> <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">to_f</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">needs_cursor?</span>
+    <span style="color: #fb4934">false</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">draw</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@background_scale</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@background_scale</span><span style="color: #fbf1c7">)</span>
+  <span style="color: #fb4934">end</span>
+<span style="color: #fb4934">end</span>
+</pre></td>
+</tr></tbody></table></code></pre><p>And finally create the mask image by using Gosu.render to draw a fullscreen black background then draw our scope mask on top of it then finally draw the rendered image using the :multiply blendmode.</p><pre class="highlight"><code class="language-ruby"><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td>
+<td class="rouge-code"><pre><span style="color: #fbf1c7;background-color: #282828">require</span> <span style="color: #b8bb26;font-style: italic">"gosu"</span>
+
+<span style="color: #fb4934">class</span> <span style="color: #8ec07c">Window</span> <span style="color: #fbf1c7">&lt;</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Window</span>
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">initialize</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">super</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@background</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/background.png"</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_mask</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/scope_mask.png"</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@show_scope</span> <span style="color: #fbf1c7">=</span> <span style="color: #fb4934">true</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">1.0</span>
+
+    <span style="color: #928374;font-style: italic"># Make background image fit to the window's height</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span> <span style="color: #fbf1c7">/</span> <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">to_f</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">needs_cursor?</span>
+    <span style="color: #fb4934">false</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">draw</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@background_scale</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@background_scale</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">draw_mask</span> <span style="color: #fb4934">if</span> <span style="color: #fbf1c7;background-color: #282828">@show_scope_mask</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">draw_mask</span>
+    <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">render</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">width</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">)</span> <span style="color: #fb4934">do</span>
+      <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw_rect</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">width</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Color</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">BLACK</span><span style="color: #fbf1c7">)</span>
+      <span style="color: #fbf1c7;background-color: #282828">@scope_mask</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw_rot</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">mouse_x</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">mouse_y</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0.5</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0.5</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">end</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">1.0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">1.0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Color</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">WHITE</span><span style="color: #fbf1c7">,</span> <span style="color: #83a598">:multiply</span><span style="color: #fbf1c7">)</span>
+  <span style="color: #fb4934">end</span>
+<span style="color: #fb4934">end</span>
+</pre></td>
+</tr></tbody></table></code></pre><p>Lastly use the right mouse button to toggle the scope on and off. Finally create a new instance of the Window class and show it.</p><pre class="highlight"><code class="language-ruby"><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td>
+<td class="rouge-code"><pre><span style="color: #fbf1c7;background-color: #282828">require</span> <span style="color: #b8bb26;font-style: italic">"gosu"</span>
+
+<span style="color: #fb4934">class</span> <span style="color: #8ec07c">Window</span> <span style="color: #fbf1c7">&lt;</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Window</span>
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">initialize</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">super</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7">*</span><span style="color: #fbf1c7;background-color: #282828">args</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@background</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/background.png"</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_mask</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Image</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #b8bb26;font-style: italic">"assets/scope_mask.png"</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">@show_scope</span> <span style="color: #fbf1c7">=</span> <span style="color: #fb4934">true</span>
+    <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #d3869b">1.0</span>
+
+    <span style="color: #928374;font-style: italic"># Make background image fit to the window's height</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background_scale</span> <span style="color: #fbf1c7">=</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span> <span style="color: #fbf1c7">/</span> <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">to_f</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">needs_cursor?</span>
+    <span style="color: #fb4934">false</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">draw</span>
+    <span style="color: #fbf1c7;background-color: #282828">@background</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@background_scale</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@background_scale</span><span style="color: #fbf1c7">)</span>
+
+    <span style="color: #fbf1c7;background-color: #282828">draw_mask</span> <span style="color: #fb4934">if</span> <span style="color: #fbf1c7;background-color: #282828">@show_scope_mask</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">draw_mask</span>
+    <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">render</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">width</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">)</span> <span style="color: #fb4934">do</span>
+      <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw_rect</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">width</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">height</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Color</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">BLACK</span><span style="color: #fbf1c7">)</span>
+      <span style="color: #fbf1c7;background-color: #282828">@scope_mask</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw_rot</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">mouse_x</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">self</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">mouse_y</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0.5</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0.5</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span><span style="color: #fbf1c7">,</span> <span style="color: #fbf1c7;background-color: #282828">@scope_scale</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fb4934">end</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">draw</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">1.0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">1.0</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">Color</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">WHITE</span><span style="color: #fbf1c7">,</span> <span style="color: #83a598">:multiply</span><span style="color: #fbf1c7">)</span>
+  <span style="color: #fb4934">end</span>
+
+  <span style="color: #fb4934">def</span> <span style="color: #fbf1c7;background-color: #282828">button_down</span><span style="color: #fbf1c7">(</span><span style="color: #fbf1c7;background-color: #282828">id</span><span style="color: #fbf1c7">)</span>
+    <span style="color: #fbf1c7;background-color: #282828">@show_scope_mask</span> <span style="color: #fbf1c7">=</span> <span style="color: #fbf1c7">!</span><span style="color: #fbf1c7;background-color: #282828">@show_scope_mask</span> <span style="color: #fb4934">if</span> <span style="color: #fbf1c7;background-color: #282828">id</span> <span style="color: #fbf1c7">==</span> <span style="color: #d3869b">Gosu</span><span style="color: #fbf1c7">::</span><span style="color: #d3869b">MS_RIGHT</span>
+  <span style="color: #fb4934">end</span>
+<span style="color: #fb4934">end</span>
+
+<span style="color: #d3869b">Window</span><span style="color: #fbf1c7">.</span><span style="color: #fbf1c7;background-color: #282828">new</span><span style="color: #fbf1c7">(</span><span style="color: #d3869b">1280</span><span style="color: #fbf1c7">,</span> <span style="color: #d3869b">720</span><span style="color: #fbf1c7">,</span> <span style="color: #fb4934">false</span><span style="color: #fbf1c7">).</span><span style="color: #fbf1c7;background-color: #282828">show</span>
+</pre></td>
+</tr></tbody></table></code></pre></div></div><footer><ul><li><a href="https://github.com/cyberarm"> Github</a></li><li><a href="https://youtube.com/channel/UCzV_fK8HubXJhKayzPRMLow"> YouTube</a></li><li><a href="https://fosstodon.org/@cyberarm" rel="me"> Mastodon</a></li></ul></footer></body></html>

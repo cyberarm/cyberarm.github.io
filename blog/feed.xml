@@ -2,13 +2,288 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://cyberarm.dev/">
   <id>https://cyberarm.dev/</id>
   <title>Cyberarm's Musings</title>
-  <updated>2020-12-30T21:32:00Z</updated>
+  <updated>2021-05-12T12:35:00Z</updated>
   <link rel="alternate" href="https://cyberarm.dev/" type="text/html"/>
   <link rel="self" href="https://cyberarm.dev/blog/feed.xml" type="application/atom+xml"/>
   <author>
     <name>Cyberarm</name>
     <uri>https://github.com/cyberarm</uri>
   </author>
+  <entry>
+    <id>tag:cyberarm.dev,2021-05-12:/blog/2021-05-12-gosu-tutorial-using-the-multiply-blend-mode/</id>
+    <title type="html">Gosu Tutorial: Using the :multiply blend mode</title>
+    <published>2021-05-12T12:35:00Z</published>
+    <updated>2021-05-12T12:35:00Z</updated>
+    <link rel="alternate" href="https://cyberarm.dev/blog/2021-05-12-gosu-tutorial-using-the-multiply-blend-mode/" type="text/html"/>
+    <content type="html">&lt;img src="/media/images/gosu_tutorials/screenshots/Screenshot-from-2021-05-12-13-53-59.png"&gt;&lt;hr&gt;&lt;p&gt;&lt;b&gt;This tutorial assumes you already have &lt;a href="https://github.com/gosu/gosu/wiki"&gt;Ruby and Gosu installed&lt;/a&gt;.&lt;/b&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Here are the two images that are required&lt;/p&gt;&lt;p&gt;The background image&lt;/p&gt;&lt;img src="/media/images/gosu_tutorials/background.png"&gt;&lt;p&gt;The scope mask image&lt;/p&gt;&lt;img src="/media/images/gosu_tutorials/scope_mask.png"&gt;&lt;p&gt;This tutorial assumes the following directory structure&lt;/p&gt;&lt;pre&gt;&lt;code&gt;assets/
+  background.png
+  scope_mask.png
+tutorial.rb&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Create a Window&lt;/p&gt;&lt;pre class="highlight"&gt;&lt;code class="language-ruby"&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;
+&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;require&lt;/span&gt; &lt;span style="color: #b8bb26;font-style: italic"&gt;"gosu"&lt;/span&gt;
+
+&lt;span style="color: #fb4934"&gt;class&lt;/span&gt; &lt;span style="color: #8ec07c"&gt;Window&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;
+&lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Implement Window#initialize&lt;/p&gt;&lt;pre class="highlight"&gt;&lt;code class="language-ruby"&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;
+&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;require&lt;/span&gt; &lt;span style="color: #b8bb26;font-style: italic"&gt;"gosu"&lt;/span&gt;
+
+&lt;span style="color: #fb4934"&gt;class&lt;/span&gt; &lt;span style="color: #8ec07c"&gt;Window&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;initialize&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;super&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Load images and add instance variables&lt;/p&gt;&lt;pre class="highlight"&gt;&lt;code class="language-ruby"&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;
+&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;require&lt;/span&gt; &lt;span style="color: #b8bb26;font-style: italic"&gt;"gosu"&lt;/span&gt;
+
+&lt;span style="color: #fb4934"&gt;class&lt;/span&gt; &lt;span style="color: #8ec07c"&gt;Window&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;initialize&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;super&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/background.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_mask&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/scope_mask.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fb4934"&gt;true&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;
+
+    &lt;span style="color: #928374;font-style: italic"&gt;# Make background image fit to the window's height&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;/&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;to_f&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Hide cursor and draw background&lt;/p&gt;&lt;pre class="highlight"&gt;&lt;code class="language-ruby"&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;
+&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;require&lt;/span&gt; &lt;span style="color: #b8bb26;font-style: italic"&gt;"gosu"&lt;/span&gt;
+
+&lt;span style="color: #fb4934"&gt;class&lt;/span&gt; &lt;span style="color: #8ec07c"&gt;Window&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;initialize&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;super&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/background.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_mask&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/scope_mask.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fb4934"&gt;true&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;
+
+    &lt;span style="color: #928374;font-style: italic"&gt;# Make background image fit to the window's height&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;/&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;to_f&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;needs_cursor?&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;false&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And finally create the mask image by using Gosu.render to draw a fullscreen black background then draw our scope mask on top of it then finally draw the rendered image using the :multiply blendmode.&lt;/p&gt;&lt;pre class="highlight"&gt;&lt;code class="language-ruby"&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;
+&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;require&lt;/span&gt; &lt;span style="color: #b8bb26;font-style: italic"&gt;"gosu"&lt;/span&gt;
+
+&lt;span style="color: #fb4934"&gt;class&lt;/span&gt; &lt;span style="color: #8ec07c"&gt;Window&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;initialize&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;super&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/background.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_mask&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/scope_mask.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fb4934"&gt;true&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;
+
+    &lt;span style="color: #928374;font-style: italic"&gt;# Make background image fit to the window's height&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;/&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;to_f&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;needs_cursor?&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;false&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_mask&lt;/span&gt; &lt;span style="color: #fb4934"&gt;if&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope_mask&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_mask&lt;/span&gt;
+    &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;render&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;width&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt; &lt;span style="color: #fb4934"&gt;do&lt;/span&gt;
+      &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_rect&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;width&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Color&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;BLACK&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+      &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_mask&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_rot&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;mouse_x&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;mouse_y&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0.5&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0.5&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Color&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;WHITE&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #83a598"&gt;:multiply&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Lastly use the right mouse button to toggle the scope on and off. Finally create a new instance of the Window class and show it.&lt;/p&gt;&lt;pre class="highlight"&gt;&lt;code class="language-ruby"&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;
+&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;require&lt;/span&gt; &lt;span style="color: #b8bb26;font-style: italic"&gt;"gosu"&lt;/span&gt;
+
+&lt;span style="color: #fb4934"&gt;class&lt;/span&gt; &lt;span style="color: #8ec07c"&gt;Window&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;initialize&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;super&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;*&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;args&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/background.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_mask&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Image&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #b8bb26;font-style: italic"&gt;"assets/scope_mask.png"&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fb4934"&gt;true&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;
+
+    &lt;span style="color: #928374;font-style: italic"&gt;# Make background image fit to the window's height&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;/&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;to_f&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;needs_cursor?&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;false&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@background_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_mask&lt;/span&gt; &lt;span style="color: #fb4934"&gt;if&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope_mask&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_mask&lt;/span&gt;
+    &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;render&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;width&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt; &lt;span style="color: #fb4934"&gt;do&lt;/span&gt;
+      &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_rect&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;width&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;height&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Color&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;BLACK&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+      &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_mask&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw_rot&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;mouse_x&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;self&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;mouse_y&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0.5&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0.5&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@scope_scale&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;draw&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;1.0&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;Color&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;WHITE&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #83a598"&gt;:multiply&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+  &lt;span style="color: #fb4934"&gt;def&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;button_down&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;id&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;)&lt;/span&gt;
+    &lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope_mask&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;=&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;!&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;@show_scope_mask&lt;/span&gt; &lt;span style="color: #fb4934"&gt;if&lt;/span&gt; &lt;span style="color: #fbf1c7;background-color: #282828"&gt;id&lt;/span&gt; &lt;span style="color: #fbf1c7"&gt;==&lt;/span&gt; &lt;span style="color: #d3869b"&gt;Gosu&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;::&lt;/span&gt;&lt;span style="color: #d3869b"&gt;MS_RIGHT&lt;/span&gt;
+  &lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+&lt;span style="color: #fb4934"&gt;end&lt;/span&gt;
+
+&lt;span style="color: #d3869b"&gt;Window&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;.&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;new&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;(&lt;/span&gt;&lt;span style="color: #d3869b"&gt;1280&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #d3869b"&gt;720&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;,&lt;/span&gt; &lt;span style="color: #fb4934"&gt;false&lt;/span&gt;&lt;span style="color: #fbf1c7"&gt;).&lt;/span&gt;&lt;span style="color: #fbf1c7;background-color: #282828"&gt;show&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
   <entry>
     <id>tag:cyberarm.dev,2020-12-30:/blog/2020-12-30-refreshed-site-design/</id>
     <title type="html">Refreshed site design</title>
@@ -19,7 +294,7 @@
 
 &lt;p&gt;Toned down the page content background color and slimmed down and merged the navigation buttons together.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/media/images/2020-12-30-site-refresh.webp" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/media/images/2020-12-30-site-refresh.webp" alt=""&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -56,32 +331,6 @@ as Nanoc natively supports &lt;a href="https://github.com/slim-template/slim"&gt
 &lt;p&gt;And after that completely rewrite Jared to expect gems for plugins, and to use the &lt;a href="https://github.com/cyberarm/jared-plugins"&gt;jared-plugins&lt;/a&gt; repository to find plugins.&lt;/p&gt;
 
 &lt;p&gt;I hope to have Jared at a true 1.0 by around Christmas.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:cyberarm.dev,2014-11-18:/blog/2014-11-18-first-post/</id>
-    <title type="html">First Post</title>
-    <published>2014-11-18T14:00:00Z</published>
-    <updated>2014-11-18T14:00:00Z</updated>
-    <link rel="alternate" href="https://cyberarm.dev/blog/2014-11-18-first-post/" type="text/html"/>
-    <content type="html">&lt;pre&gt;&lt;code&gt;&amp;gt; irb
-
-require "blogging"
-
-class Blog
-  include Blogging
-
-  def initialize
-    words = Writer.new
-    puts "word count: #{words.count}"
-  end
-end
-
-
-Blog.new
-
-&amp;gt; NoMethodError: undefined method 'count' for #&amp;lt;Writer:0x2b8a0f8&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>

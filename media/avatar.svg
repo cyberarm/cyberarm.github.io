@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733336"
+   version="1.1"
+   id="svg2461"
+   inkscape:export-filename="/home/cyberarm/bitmap.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   sodipodi:docname="avatar.svg">
+  <defs
+     id="defs2455" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="97.227005"
+     inkscape:cy="114.96157"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:showpageshadow="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     inkscape:snap-page="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1006"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2458">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-229.26665)">
+    <rect
+       style="opacity:1;fill:#28170b;fill-opacity:1;stroke:#000000;stroke-width:0.0001055;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3364"
+       width="67.733337"
+       height="67.733337"
+       x="-1.7011719e-06"
+       y="229.26665"
+       ry="2.5390604" />
+    <g
+       id="g3087"
+       transform="matrix(0.89368747,0,0,0.89368747,3.6004511,27.974371)">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="214.75999"
+         inkscape:export-xdpi="214.75999"
+         inkscape:export-filename="/home/cyberarm/Code/ruby-clan/public/images/logo_med.png"
+         d="M 34.120965,289.56532 3.588646,250.4657 25.215997,250.34651 Z m 1e-5,0 30.02371,-39.21881 h -20.98504 z"
+         style="fill:#c87137;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path129" />
+      <g
+         inkscape:export-ydpi="214.75999"
+         inkscape:export-xdpi="214.75999"
+         inkscape:export-filename="/home/cyberarm/Code/ruby-clan/public/images/logo_med.png"
+         style="fill:#a05a2c"
+         id="g2425"
+         transform="translate(-66.836872,199.22003)">
+        <path
+           style="fill:#a05a2c;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 130.98156,51.126479 -17.65928,-13.6452 -12.36443,8e-6 9.03867,13.645192 z"
+           id="path135"
+           inkscape:connector-curvature="0" />
+        <path
+           sodipodi:nodetypes="ccccc"
+           style="fill:#a05a2c;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 92.052874,51.126479 8.904976,-13.645198 -11.9571,-2e-6 -18.575229,13.76439 z"
+           id="path137"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="214.75999"
+         inkscape:export-xdpi="214.75999"
+         inkscape:export-filename="/home/cyberarm/Code/ruby-clan/public/images/logo_med.png"
+         inkscape:connector-curvature="0"
+         d="m 22.163875,250.34651 h 11.9571 v 39.21881 z m 11.9571,0 v -13.6452 l -11.9571,13.6452 z"
+         style="fill:#d38d5f;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path131" />
+      <path
+         inkscape:export-ydpi="214.75999"
+         inkscape:export-xdpi="214.75999"
+         inkscape:export-filename="/home/cyberarm/Code/ruby-clan/public/images/logo_med.png"
+         inkscape:connector-curvature="0"
+         d="m 34.120975,250.34651 h 12.364429 l -12.364429,-13.6452 z m 0,0 h 12.364429 l -12.364439,39.21881 z"
+         style="fill:#784421;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path141" />
+    </g>
+  </g>
+</svg>
