@@ -5,20 +5,20 @@ on:
       - main
 jobs:
     deployment:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v3
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout sources
+          uses: actions/checkout@v3
 
-      # Build site
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - run: bundle exec nanoc
+        # Build site
+        - uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: '3.3'
+            bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        - run: bundle exec nanoc
 
-      # Deploy site
-      - name: Upload your page as github pages artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: output/
+        # Deploy site
+        - name: Upload your page as github pages artifact
+          uses: actions/upload-pages-artifact@v3.0.1
+          with:
+            path: output/
