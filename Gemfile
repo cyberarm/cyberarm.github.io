@@ -1,8 +1,11 @@
 source "https://rubygems.org"
 
-gem "nanoc"
-gem "sass"
-gem "sassc"
+group :nanoc do
+  gem "nanoc"
+  gem "nanoc-dart-sass"
+  gem "guard-nanoc"
+end
+
 gem "slim"
 gem "adsf"
 gem "adsf-live"
@@ -12,7 +15,3 @@ gem "builder"
 gem "rouge"
 gem "nokogiri"
 gem "puma"
-
-group :nanoc do
-  gem 'guard-nanoc'
-end

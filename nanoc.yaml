@@ -7,6 +7,11 @@ prune:
   auto_prune: true
   exclude: [ '.git' ]
 
+deploy:
+  default:
+    kind: git
+    branch: gh-pages
+
 data_sources:
   - type: filesystem
     encoding: utf-8
