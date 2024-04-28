@@ -22,6 +22,7 @@ jobs:
     deployment:
       runs-on: ubuntu-latest
       steps:
+        # Checkout site
         - name: Checkout sources
           uses: actions/checkout@v3
 
