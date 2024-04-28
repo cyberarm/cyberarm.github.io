@@ -1,8 +1,17 @@
 name: Build and Deploy site
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
     deployment:
       runs-on: ubuntu-latest
@@ -17,8 +26,13 @@ jobs:
             bundler-cache: true # runs 'bundle install' and caches installed gems automatically
         - run: bundle exec nanoc
 
-        # Deploy site
+        # Package site
         - name: Upload your page as github pages artifact
           uses: actions/upload-pages-artifact@v3.0.1
           with:
             path: output/
+
+        # Deploy site
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
