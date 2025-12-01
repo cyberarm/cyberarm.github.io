@@ -33,7 +33,7 @@ compile '/**/*.{md,markdown}' do
 end
 
 compile '/**/*.sass' do
-  filter :dart_sass
+  filter :sass
 
   write @item.identifier.without_ext + '.css'
 end
