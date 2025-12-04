@@ -13,29 +13,19 @@ compile '/sitemap.slim' do
 end
 
 compile '/**/*.slim' do
-  line_numbers = item.attributes[:highlight_line_numbers] == true
-
   filter :slim
-  filter :colorize_syntax, default_colorizer: :rouge, rouge: { legacy: true, inline_theme: "gruvbox.dark", line_numbers: line_numbers, css_class: "highlight" }
+  filter :colorize_syntax, default_colorizer: :rouge
   layout '/default.*'
 
   item.identifier.without_ext + '/index.html'
 end
 
 compile '/**/*.{md,markdown}' do
-  line_numbers = item.attributes[:highlight_line_numbers] == true
-
   filter :kramdown
-  filter :colorize_syntax, default_colorizer: :rouge, rouge: { legacy: true, inline_theme: "gruvbox.dark", line_numbers: line_numbers, css_class: "highlight" }
+  filter :colorize_syntax, default_colorizer: :rouge
   layout '/default.*'
 
   write item.identifier.without_ext + '/index.html'
-end
-
-compile '/**/*.sass' do
-  filter :sass
-
-  write @item.identifier.without_ext + '.css'
 end
 
 compile '/**/*' do

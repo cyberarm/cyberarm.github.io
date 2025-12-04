@@ -4,12 +4,11 @@ title: Home
 
 h1 Greetings and Salutations
 p Welcome to my little corner of the internet. Here I showcase my projects in various stages of completion.
-br
 
-h1 Latest Post
+h2 Latest Post
 - article = sorted_articles.first
 - if article
-  h2
+  h3
     a href="#{article.path}"=article[:title]
   p #{article.attributes[:created_at].strftime("%e %B %Y")}
   p

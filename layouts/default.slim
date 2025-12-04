@@ -1,33 +1,70 @@
 doctype html
 html
   head
-    title #{ @item[:title] } | Cyberarm
-    link rel="stylesheet" href="/css/style.css" type="text/css"
-
-    link rel="alternate" type="application/atom+xml" title="Cyberarm's Musings" href="/blog/feed.xml"
-
-    meta content="width=device-width, initial-scale=1" name="viewport"
     meta charset="utf-8"
-  body
-    .page
-      .heading
-        a.gravatar href="/"
-          img src="https://secure.gravatar.com/avatar/daa730763505dfaf9db348e5e78fbe1f?d=identicon&s=128" height="100"
-        h1 Hi. I'm Cyberarm.
-        p
-          span I make games and other things with <a href="https://www.ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>. 🕹️
-        ul.navigation
-          li
-            a.left href="/" Home
-          li
-            a href="/projects" Projects
-          li
-            a href="/games" Games
-          li
-            a.right href="/blog" Blog
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="color-scheme" content="light dark"
 
-      div.content
-        h2.page_title=@item[:title]
+    link rel="stylesheet" href="/media/css/pico.jade.min.css"
+    link rel="stylesheet" href="/media/css/gruvbox.dark.css"
+    link rel="alternate" type="application/atom+xml" title="Cyberarm's Musings" href="/blog/feed.xml"
+    link rel="preconnect" href="https://fonts.bunny.net"
+    link href="https://fonts.bunny.net/css?family=jetbrains-mono:400" rel="stylesheet"
+
+    title #{ @item[:title] } | Cyberarm
+
+    css:
+      html {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        min-width: 100%;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      pre, code {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      .gravatar {
+        border-radius: 50%;
+        width: 100px;
+        box-shadow: 0 0 0.5em black;
+        transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .gravatar:hover {
+        transform: rotateZ(180deg);
+      }
+  body
+    main.container
+      article
+        center
+          a href="/"
+            img.gravatar src="https://secure.gravatar.com/avatar/daa730763505dfaf9db348e5e78fbe1f?d=identicon&s=128" height="100"
+          h1 Hi. I'm Cyberarm.
+          p
+            span I make games and other things with <a href="https://www.ruby-lang.org">Ruby</a> and <a href="https://libgosu.org">Gosu</a>. 🕹️
+
+          div[role="group" style="margin: 0 auto; display: flex; max-width: 600pt;"]
+            a[role="button" href="/"]
+              strong Home
+            a[role="button" href="/projects"]
+              strong Projects
+            a[role="button" href="/games"]
+              strong Games
+            a[role="button" href="/blog"]
+              strong Blog
+
+      article[style="flex-grow: 1;"]
+        h1=@item[:title]
 
         - if @item[:kind] == "article"
           h4 = @item[:created_at].strftime("%B %e %Y")
@@ -37,11 +74,12 @@ html
             a href="#{@item[:source]}"
               img src="https://github.githubassets.com/favicons/favicon.svg" title="Source Code"
         == yield
-    footer
-      ul
-        li
-          a rel="me" href="https://github.com/cyberarm"  Github
-        li
-          a rel="me" href="https://www.youtube.com/@cyberarm"  YouTube
-        li
-          a rel="me" href="https://mastodon.gamedev.place/@cyberarm"  Mastodon
+      footer
+        nav
+          ul[style="margin: 0 auto;"]
+            li
+              a rel="me" href="https://github.com/cyberarm"  Github
+            li
+              a rel="me" href="https://www.youtube.com/@cyberarm"  YouTube
+            li
+              a rel="me" href="https://mastodon.gamedev.place/@cyberarm"  Mastodon

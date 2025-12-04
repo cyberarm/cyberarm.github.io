@@ -5,7 +5,7 @@ permalink: /blog/
 ---
 
 - sorted_articles.each do |article|
-  h1
+  h2
     a href="#{article.path}" #{article.attributes[:title]}
   p #{article.attributes[:created_at].strftime("%e %B %Y")}
   p
